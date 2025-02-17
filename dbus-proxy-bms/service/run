@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "*** starting dbus-proxy-bms ***"
+exec 2>&1
+exec python /data/etc/dbus-proxy-bms/dbus-proxy-bms.py
