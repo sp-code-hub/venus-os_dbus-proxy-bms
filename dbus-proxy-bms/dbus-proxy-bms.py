@@ -248,6 +248,11 @@ def main():
     # Have a mainloop, so we can send/receive asynchronous calls to and from dbus
     DBusGMainLoop(set_as_default=True)
 
+    paths_dbus = {
+        "/UpdateIndex": {"value": 0, "textformat": _n},
+    }
+    paths_dbus.update(battery_dict)
+
     DbusMqttBatteryService(
         servicename="com.victronenergy.battery.proxy_bms_" + str(config["DEFAULT"]["device_instance"]),
         deviceinstance=int(config["DEFAULT"]["device_instance"]),
