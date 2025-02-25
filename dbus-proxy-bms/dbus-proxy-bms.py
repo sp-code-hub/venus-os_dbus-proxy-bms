@@ -142,6 +142,64 @@ battery_dict = {
     "/System/NrOfModulesOffline": {"value": 0, "textformat": _n},
     "/System/NrOfModulesBlockingCharge": {"value": 0, "textformat": _n},
     "/System/NrOfModulesBlockingDischarge": {"value": 0, "textformat": _n},
+    # distributer
+    "/NrOfDistributors": {"value": 0, "textformat": _n},
+    "/Distributor/A/Status": {"value": None, "textformat": _n},                # <= 0=Not available, 1=Connected, 2=No bus power, 3=Communications Lost
+    "/Distributor/A/Alarms/ConnectionLost": {"value": None, "textformat": _n}, # <= 0=Ok, 2=Alarm
+    "/Distributor/A/Fuse/0/Name": {"value": None, "textformat": _s},           # <= UTF-8 string, limited to 16 bytes in firmware
+    "/Distributor/A/Fuse/0/Status": {"value": None, "textformat": _n},         # <= 0=Not available, 1=Not used, 2=Ok, 3=Blown
+    "/Distributor/A/Fuse/0/Alarms/Blown": {"value": None, "textformat": _n},   # <= 0=Ok, 2=Alarm
+    "/Distributor/A/Fuse/1/Name": {"value": None, "textformat": _s},
+    "/Distributor/A/Fuse/1/Status": {"value": None, "textformat": _n},
+    "/Distributor/A/Fuse/1/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/A/Fuse/2/Name": {"value": None, "textformat": _s},
+    "/Distributor/A/Fuse/2/Status": {"value": None, "textformat": _n},
+    "/Distributor/A/Fuse/2/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/A/Fuse/3/Name": {"value": None, "textformat": _s},
+    "/Distributor/A/Fuse/3/Status": {"value": None, "textformat": _n},
+    "/Distributor/A/Fuse/3/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/B/Status": {"value": None, "textformat": _n},
+    "/Distributor/B/Alarms/ConnectionLost": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/0/Name": {"value": None, "textformat": _s},
+    "/Distributor/B/Fuse/0/Status": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/0/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/1/Name": {"value": None, "textformat": _s},
+    "/Distributor/B/Fuse/1/Status": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/1/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/2/Name": {"value": None, "textformat": _s},
+    "/Distributor/B/Fuse/2/Status": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/2/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/3/Name": {"value": None, "textformat": _s},
+    "/Distributor/B/Fuse/3/Status": {"value": None, "textformat": _n},
+    "/Distributor/B/Fuse/3/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/C/Status": {"value": None, "textformat": _n},
+    "/Distributor/C/Alarms/ConnectionLost": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/0/Name": {"value": None, "textformat": _s},
+    "/Distributor/C/Fuse/0/Status": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/0/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/1/Name": {"value": None, "textformat": _s},
+    "/Distributor/C/Fuse/1/Status": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/1/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/2/Name": {"value": None, "textformat": _s},
+    "/Distributor/C/Fuse/2/Status": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/2/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/3/Name": {"value": None, "textformat": _s},
+    "/Distributor/C/Fuse/3/Status": {"value": None, "textformat": _n},
+    "/Distributor/C/Fuse/3/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/D/Status": {"value": None, "textformat": _n},
+    "/Distributor/D/Alarms/ConnectionLost": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/0/Name": {"value": None, "textformat": _s},
+    "/Distributor/D/Fuse/0/Status": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/0/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/1/Name": {"value": None, "textformat": _s},
+    "/Distributor/D/Fuse/1/Status": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/1/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/2/Name": {"value": None, "textformat": _s},
+    "/Distributor/D/Fuse/2/Status": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/2/Alarms/Blown": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/3/Name": {"value": None, "textformat": _s},
+    "/Distributor/D/Fuse/3/Status": {"value": None, "textformat": _n},
+    "/Distributor/D/Fuse/3/Alarms/Blown": {"value": None, "textformat": _n},
 }
 
 ignore_list = [
@@ -196,7 +254,7 @@ class DbusMqttBatteryService:
         self._dbusservice.add_path("/ProductId", 0xFFFF)
         self._dbusservice.add_path("/ProductName", productname)
         self._dbusservice.add_path("/CustomName", customname)
-        self._dbusservice.add_path("/FirmwareVersion", "1.0.1-dev (20250217)")
+        self._dbusservice.add_path("/FirmwareVersion", "1.0.1-dev (20250225)")
         # self._dbusservice.add_path('/HardwareVersion', '')
         self._dbusservice.add_path("/Connected", 1)
 
